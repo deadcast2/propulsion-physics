@@ -17,12 +17,11 @@ public class tsg_PropulsionPhysics : MonoBehaviour {
 
   void OnTriggerEnter(Collider other) {
     if(PropulsionPadActive()) {
-      
       //////////////////////////////////////////////////////////////////
       // To prevent the collider from missing the target, get the
       // closest point the collider hit on the trigger and calculate the
       // velocity based on that starting point.
-	  Vector3 hitPoint = other.ClosestPointOnBounds(transform.position);
+      Vector3 hitPoint = other.ClosestPointOnBounds(transform.position);
       PropelObject(other.gameObject, CalculateVelocity(hitPoint));
     }
   }
@@ -65,14 +64,14 @@ public class tsg_PropulsionPhysics : MonoBehaviour {
   }
  
   ////////////////////////////////////////////////////////////////////////////////
-  // This is the heart of the Propulsion Physics. If the target is far enough away
+  // This is the heart of the Propulsion Physics script. If the target is far enough away
   // the normal trajectory is calculated based on the editor's set gravity. A non-
   // parabolic trajectory is calculated if the target is almost straight overhead.
   // The verticalOnlyMin can be adjusted to when the velocity calculation should
   // switch to vertical populsion only.
   Vector3 CalculateVelocity(Vector3 startPoint) {
-    float gravity = Physics.gravity.magnitude;
     Vector3 direction = (target.position - startPoint);
+    float gravity = Physics.gravity.magnitude;
     float yVelocity = (direction.y / reachTime) + (0.5f * gravity * reachTime);
     
     if(TargetTooClose()) {
@@ -101,7 +100,6 @@ public class tsg_PropulsionPhysics : MonoBehaviour {
         currentPosition += (initialVelocity * deltaTime) + (0.5f * Physics.gravity * deltaTime * deltaTime);
         initialVelocity += Physics.gravity * deltaTime;
         Gizmos.DrawLine(previousPosition, currentPosition);
-        
         //////////////////////////////////////////////////////////////////////////////////
         // If the next loop is the last iteration, then don't update the previous position
         // vector so it can be used to draw the gizmos arrow.

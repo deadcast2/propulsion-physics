@@ -11,17 +11,17 @@ That’s it! Now you can start using Propulsion Physics in your game and enjoy w
 
 2. Settings
 -----------
-+ Target is the Transform object that the propulsion script will propel the object to. The included Propulsion Target Prefab is a fast way to set targets for your propulsions.
++ **Target** is the Transform object that the propulsion script will propel the object to. The included Propulsion Target Prefab is a fast way to set targets for your propulsions.
 
-+ Reach Time lets you set how long the propelled object should take to reach the target based on the editor’s gravity. 
++ **Reach Time** lets you set how long the propelled object should take to reach the target based on the editor’s gravity. 
 
-+ Propel Sound allows you to have a sound play when something touches the propulsion script. It plays the sound at the location the tsg_PropulsionPhysics script is attached to.
++ **Propel Sound** allows you to have a sound play when something touches the propulsion script. It plays the sound at the location the tsg_PropulsionPhysics script is attached to.
 
-+ Trajectory Color does what it says. :) This is really handy when you have multiple propulsions in a scene.
++ **Trajectory Color** does what it says. :) This is really handy when you have multiple propulsions in a scene.
 
-+ Show Trajectory lets you either show or hide the trajectory in the scene view. 
++ **Show Trajectory** lets you either show or hide the trajectory in the scene view. 
 
-+ Vertical Only Min tells the propulsion script that when the target position gets within this distance from the Pad, it should calculate a vertical only trajectory. 
++ **Vertical Only Min** tells the propulsion script that when the target position gets within this distance from the Pad, it should calculate a vertical only trajectory. 
 
 3. Extending
 ------------

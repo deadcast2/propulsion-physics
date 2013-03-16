@@ -22,7 +22,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour {
       // To prevent the collider from missing the target, get the
       // closest point the collider hit on the trigger and calculate the
       // velocity based on that starting point.
-		  Vector3 hitPoint = other.ClosestPointOnBounds(transform.position);
+	  Vector3 hitPoint = other.ClosestPointOnBounds(transform.position);
       PropelObject(other.gameObject, CalculateVelocity(hitPoint));
     }
   }

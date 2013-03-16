@@ -21,20 +21,24 @@ That’s it! Now you can start using Propulsion Physics in your game and enjoy w
 
 + **Show Trajectory** lets you either show or hide the trajectory in the scene view. 
 
-+ **Vertical Only Min** tells the propulsion script that when the target position gets within this distance from the Pad, it should calculate a vertical only trajectory. 
++ **Vertical Only Min** tells the propulsion script that when the target position gets within this distance from the Pad, it should calculate a vertical only trajectory.
 
-3. Extending
+3. Method(s)
+------------
++ void SetTarget(Transform newTarget, float newReachTime);
+
+4. Extending
 ------------
 It’s easy to extend Propulsion Physics to work with other types of objects. Say you want a character controller to be propelled, just implement the tsg_IPropelBehavior interface and define a React method. This React method will be called once your custom script touches the Propulsion Pad trigger. You can then define how to handle what happens to the character. To see an example of this, check out the tsg_PropelRigidBody script. Now of course the prefabs included are just quick examples on how to get going. The propulsion script could be applied to any object any is really dependent on your game. So hack away! :)
 
-4. Support
+5. Support
 ----------
 If you have any questions about this tool or suggestions that could make it better, please let me know! You can contact me at caleb **at** twosidegames **dot** com.
 
-5. License
+6. License
 ----------
 This work is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/).
 
-6. Thanks
+7. Thanks
 ---------
 I'd like to thank AnomalusUndrdog and kOrc from the Unity forums for helping make this code possible. :)

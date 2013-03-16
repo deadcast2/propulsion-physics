@@ -30,3 +30,7 @@ It’s easy to extend Propulsion Physics to work with other types of objects. Sa
 4. Support
 ----------
 If you have any questions about this tool or have suggestions for it that could make it better, please let me know! You can contact me caleb@twosidegames.com.
+
+5. License
+----------
+This work is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/).

@@ -34,3 +34,7 @@ If you have any questions about this tool or have suggestions for it that could 
 5. License
 ----------
 This work is licensed under a [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/).
+
+6. Thanks
+---------
+I'd like to thank AnomalusUndrdog and kOrc from the Unity forums for helping make this code possible. :)

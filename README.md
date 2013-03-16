@@ -3,9 +3,9 @@ Propulsion Physics v1.0
 
 1. Getting Started
 ------------------
-Hello and thanks for purchasing Propulsion Physics! Prefabs are included with the tool to let you quickly start trying out the propulsion scripts. To try out this tool in your scene, drag on the Propulsion Pad prefab and then drag on the Propulsion Target prefab into your scene. Click on the Propulsion Pad and then drag and drop the Propulsion Target from the hierarchy pane onto the Target field on the Propulsion Pad. 
+Hello and thanks for checking out Propulsion Physics! Prefabs are included with the tool to let you quickly start trying out the propulsion scripts. To try this out in your scene, drag on the Propulsion Pad prefab and then drag on the Propulsion Target prefab into your scene. Click on the Propulsion Pad and then drag and drop the Propulsion Target from the hierarchy pane onto the Target field on the Propulsion Pad. 
 
-In the scene view, you should see an arrow connecting the Pad to the Target. That’s the trajectory the object will take when it get’s propelled off the Propulsion Pad. Now let’s propel a Rigidbody! Create a sphere and add a Rigidbody to it. Next add the tsg_PropelRigidBody script to the sphere. This script tells the Propulsion Pad how to handle propelling this object when they touch. Now position the sphere over the Pad and let it fall. You should see it fly into the air and eventually land on the target. 
+In the scene view, you should see an arrow connecting the Pad to the Target. That’s the trajectory the object will take when it gets propelled off the Propulsion Pad. Now let’s propel a Rigidbody! Create a sphere and add a Rigidbody to it. Next add the tsg_PropelRigidBody script to the sphere. This script tells the Propulsion Pad how to handle propelling this object when they touch. Now position the sphere over the Pad and let it fall. You should see it fly into the air and eventually land on the target. 
 
 That’s it! Now you can start using Propulsion Physics in your game and enjoy watching objects get shot around. :)
 
@@ -15,7 +15,7 @@ That’s it! Now you can start using Propulsion Physics in your game and enjoy w
 
 + **Reach Time** lets you set how long the propelled object should take to reach the target based on the editor’s gravity. 
 
-+ **Propel Sound** allows you to have a sound play when something touches the propulsion script. It plays the sound at the location the tsg_PropulsionPhysics script is attached to.
++ **Propel Sound** allows you to have a sound play when something touches the propulsion script.
 
 + **Trajectory Color** does what it says. :) This is really handy when you have multiple propulsions in a scene.
 
@@ -29,7 +29,7 @@ It’s easy to extend Propulsion Physics to work with other types of objects. Sa
 
 4. Support
 ----------
-If you have any questions about this tool or have suggestions for it that could make it better, please let me know! You can contact me caleb@twosidegames.com.
+If you have any questions about this tool or suggestions that could make it better, please let me know! You can contact me at caleb **at** twosidegames **dot** com.
 
 5. License
 ----------

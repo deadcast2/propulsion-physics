@@ -29,7 +29,7 @@ That’s it! Now you can start using Propulsion Physics in your game and enjoy w
 
 4. Extending
 ------------
-It’s easy to extend Propulsion Physics to work with other types of objects. Say you want a character controller to be propelled, just implement the tsg_IPropelBehavior interface and define a React method. This React method will be called once your custom script touches the Propulsion Pad trigger. You can then define how to handle what happens to the character. To see an example of this, check out the tsg_PropelRigidBody script. Now of course the prefabs included are just quick examples on how to get going. The propulsion script could be applied to any object any is really dependent on your game. So hack away! :)
+It’s easy to extend Propulsion Physics to work with other types of objects. Say you want a character controller to be propelled, just implement the tsg_IPropelBehavior interface and define a React method. This React method will be called once your custom script touches the Propulsion Pad trigger. You can then define how to handle what happens to the character. To see an example of this, check out the tsg_PropelRigidBody script. Now of course the prefabs included are just quick examples on how to get going. The propulsion script could be applied to any object and is really dependent on your game. So hack away! :)
 
 5. Support
 ----------

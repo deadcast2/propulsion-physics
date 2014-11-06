@@ -1,23 +1,29 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(AudioSource))]
-
 public class tsg_PropulsionPhysics : MonoBehaviour
 {
     public Transform target;
     public float reachTime = 1.5f;
-    public AudioClip propelSound;
     public Color trajectoryColor = Color.magenta;
     public bool showTrajectory = true;
     public float verticalOnlyMin = 0.5f;
 
-    void Start()
+    public void SetTarget(Transform newTarget, float newReachTime)
+    {
+        if (newTarget != null && newReachTime > 0)
+        {
+            target = newTarget;
+            reachTime = newReachTime;
+        }
+    }
+
+    private void Start()
     {
         // Added an empty start so the script could be enabled/disabled
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (PropulsionPadActive())
         {
@@ -30,7 +36,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         if (showTrajectory && PropulsionPadActive())
         {
@@ -38,18 +44,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
         }
     }
 
-    public void SetTarget(Transform newTarget, float newReachTime)
-    {
-        if (newTarget != null && newReachTime > 0)
-        {
-            target = newTarget;
-            reachTime = newReachTime;
-        }
-    }
-
-    private
-
-    bool PropulsionPadActive()
+    private bool PropulsionPadActive()
     {
         return enabled && target != null && reachTime > 0;
     }
@@ -57,22 +52,13 @@ public class tsg_PropulsionPhysics : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////
     // When an object hits me, check to see if it implements the tsg_IPropelBehavior
     // interface and if it does call its implemented method.
-    void PropelObject(GameObject propelObject, Vector3 velocity)
+    private void PropelObject(GameObject propelObject, Vector3 velocity)
     {
         tsg_IPropelBehavior objectInterface = propelObject.GetComponent(typeof(tsg_IPropelBehavior)) as tsg_IPropelBehavior;
 
         if (objectInterface != null)
         {
             objectInterface.React(velocity);
-            PlayPropulsionSound();
-        }
-    }
-
-    void PlayPropulsionSound()
-    {
-        if (propelSound)
-        {
-            AudioSource.PlayClipAtPoint(propelSound, transform.position);
         }
     }
 
@@ -82,7 +68,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
     // parabolic trajectory is calculated if the target is almost straight overhead.
     // The verticalOnlyMin can be adjusted to when the velocity calculation should
     // switch to vertical populsion only.
-    Vector3 CalculateVelocity(Vector3 startPoint)
+    private Vector3 CalculateVelocity(Vector3 startPoint)
     {
         Vector3 direction = (target.position - startPoint);
         float gravity = Physics.gravity.magnitude;
@@ -98,14 +84,14 @@ public class tsg_PropulsionPhysics : MonoBehaviour
         }
     }
 
-    bool TargetTooClose()
+    private bool TargetTooClose()
     {
         Vector3 targetPosition = target.position;
         Vector3 leveledTarget = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
         return Vector3.Distance(leveledTarget, transform.position) <= verticalOnlyMin;
     }
 
-    void DrawTrajectory()
+    private void DrawTrajectory()
     {
         Vector3 initialVelocity = CalculateVelocity(transform.position);
         float deltaTime = reachTime / initialVelocity.magnitude;
@@ -139,7 +125,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
         }
     }
 
-    void DrawArrow(Vector3 position, Vector3 direction)
+    private void DrawArrow(Vector3 position, Vector3 direction)
     {
         int[] arrowAngles = new int[] { 225, 135 };
         foreach (int angle in arrowAngles)
@@ -149,7 +135,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
         }
     }
 
-    bool IsParabolicVelocity(Vector3 velocity)
+    private bool IsParabolicVelocity(Vector3 velocity)
     {
         return !(velocity.x == 0 && velocity.z == 0);
     }

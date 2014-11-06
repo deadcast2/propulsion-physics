@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class tsg_TargetCube : MonoBehaviour
 {
-    void Start()
+    private void OnDrawGizmos()
     {
-        if (Application.isPlaying)
-        {
-            gameObject.SetActive(false);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.2f);
     }
 }

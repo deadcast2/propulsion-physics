@@ -9,15 +9,6 @@ public class tsg_PropulsionPhysics : MonoBehaviour
     public bool showTrajectory = true;
     public float verticalOnlyMin = 0.5f;
 
-    public void SetTarget(Transform newTarget, float newReachTime)
-    {
-        if (newTarget != null && newReachTime > 0)
-        {
-            target = newTarget;
-            reachTime = newReachTime;
-        }
-    }
-
     private void Start()
     {
         // Added an empty start so the script could be enabled/disabled
@@ -107,6 +98,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
                 currentPosition += (initialVelocity * deltaTime) + (0.5f * Physics.gravity * deltaTime * deltaTime);
                 initialVelocity += Physics.gravity * deltaTime;
                 Gizmos.DrawLine(previousPosition, currentPosition);
+
                 //////////////////////////////////////////////////////////////////////////////////
                 // If the next loop is the last iteration, then don't update the previous position
                 // vector so it can be used to draw the gizmos arrow.
@@ -128,6 +120,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
     private void DrawArrow(Vector3 position, Vector3 direction)
     {
         int[] arrowAngles = new int[] { 225, 135 };
+
         foreach (int angle in arrowAngles)
         {
             Vector3 endPoint = Quaternion.LookRotation(direction) * Quaternion.Euler(0, angle, 0) * Vector3.forward;

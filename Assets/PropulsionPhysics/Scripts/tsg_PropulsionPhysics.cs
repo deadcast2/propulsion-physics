@@ -16,13 +16,24 @@ public class tsg_PropulsionPhysics : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////
     // When an object hits me, check to see if it implements the tsg_IPropelBehavior
     // interface and if it does call its implemented method.
-    protected virtual void PropelObject(GameObject propelObject, Vector3 velocity)
+    protected virtual bool PropelObject(GameObject propelObject, Vector3 velocity)
     {
-        tsg_IPropelBehavior objectInterface = propelObject.GetComponent(typeof(tsg_IPropelBehavior)) as tsg_IPropelBehavior;
+        var objectInterface = propelObject.GetComponent(typeof(tsg_IPropelBehavior)) as tsg_IPropelBehavior;
 
         if (objectInterface != null)
         {
             objectInterface.React(velocity);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (showTrajectory && PropulsionPadActive())
+        {
+            DrawTrajectory();
         }
     }
 
@@ -36,14 +47,6 @@ public class tsg_PropulsionPhysics : MonoBehaviour
             // velocity based on that starting point.
             Vector3 hitPoint = other.ClosestPointOnBounds(transform.position);
             PropelObject(other.gameObject, CalculateVelocity(hitPoint));
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (showTrajectory && PropulsionPadActive())
-        {
-            DrawTrajectory();
         }
     }
 

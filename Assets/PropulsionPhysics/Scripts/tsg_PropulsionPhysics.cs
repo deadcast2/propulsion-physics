@@ -29,15 +29,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
         return false;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (showTrajectory && PropulsionPadActive())
-        {
-            DrawTrajectory();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (PropulsionPadActive())
         {
@@ -47,6 +39,14 @@ public class tsg_PropulsionPhysics : MonoBehaviour
             // velocity based on that starting point.
             Vector3 hitPoint = other.ClosestPointOnBounds(transform.position);
             PropelObject(other.gameObject, CalculateVelocity(hitPoint));
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (showTrajectory && PropulsionPadActive())
+        {
+            DrawTrajectory();
         }
     }
 

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class tsg_PropulsionPhysics : MonoBehaviour
 {
@@ -9,9 +8,22 @@ public class tsg_PropulsionPhysics : MonoBehaviour
     public bool showTrajectory = true;
     public float verticalOnlyMin = 0.5f;
 
-    private void Start()
+    protected virtual void Start()
     {
-        // Added an empty start so the script could be enabled/disabled
+        // Added an empty start so the script can be enabled/disabled
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // When an object hits me, check to see if it implements the tsg_IPropelBehavior
+    // interface and if it does call its implemented method.
+    protected virtual void PropelObject(GameObject propelObject, Vector3 velocity)
+    {
+        tsg_IPropelBehavior objectInterface = propelObject.GetComponent(typeof(tsg_IPropelBehavior)) as tsg_IPropelBehavior;
+
+        if (objectInterface != null)
+        {
+            objectInterface.React(velocity);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,20 +49,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
 
     private bool PropulsionPadActive()
     {
-        return enabled && target != null && reachTime > 0;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    // When an object hits me, check to see if it implements the tsg_IPropelBehavior
-    // interface and if it does call its implemented method.
-    private void PropelObject(GameObject propelObject, Vector3 velocity)
-    {
-        tsg_IPropelBehavior objectInterface = propelObject.GetComponent(typeof(tsg_IPropelBehavior)) as tsg_IPropelBehavior;
-
-        if (objectInterface != null)
-        {
-            objectInterface.React(velocity);
-        }
+        return (enabled && target != null && reachTime > 0);
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -79,6 +78,7 @@ public class tsg_PropulsionPhysics : MonoBehaviour
     {
         Vector3 targetPosition = target.position;
         Vector3 leveledTarget = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+
         return Vector3.Distance(leveledTarget, transform.position) <= verticalOnlyMin;
     }
 

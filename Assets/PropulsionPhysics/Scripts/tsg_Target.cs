@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class tsg_TargetCube : MonoBehaviour
+public class tsg_Target : MonoBehaviour
 {
     private void OnDrawGizmos()
     {

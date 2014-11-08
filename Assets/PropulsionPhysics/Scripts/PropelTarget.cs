@@ -4,10 +4,14 @@ namespace Polycrime
 {
     public class PropelTarget : MonoBehaviour
     {
+        [Range(0.1f, 1.0f)]
+        public float size = 0.2f;
+        public Color color = Color.red;
+
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position, 0.2f);
+            Gizmos.color = color;
+            Gizmos.DrawSphere(transform.position, size);
         }
     }
 }

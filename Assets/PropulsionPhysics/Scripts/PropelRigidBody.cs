@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Polycrime
 {
-    public class PropelRigidBody : MonoBehaviour, IPropelBehavior
+    public class PropelRigidbody : MonoBehaviour, IPropelBehavior
     {
         public void React(Vector3 velocity)
         {

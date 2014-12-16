@@ -1,7 +1,9 @@
 Library/
 Temp/
+obj/
 *.pidb
 *.userprefs
 *.unityproj
 *.sln
 *.csproj
+*.suo

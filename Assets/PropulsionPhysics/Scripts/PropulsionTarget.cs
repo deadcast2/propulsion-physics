@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Polycrime
 {
-    public class PropelTarget : MonoBehaviour
+    public class PropulsionTarget : MonoBehaviour
     {
         [Range(0.1f, 1.0f)]
         public float size = 0.2f;

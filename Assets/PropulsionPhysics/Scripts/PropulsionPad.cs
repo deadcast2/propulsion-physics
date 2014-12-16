@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Polycrime
 {
-    public class PropulsionPhysics : MonoBehaviour
+    public class PropulsionPad : MonoBehaviour
     {
         public Transform target;
         public float reachTime = 1.5f;

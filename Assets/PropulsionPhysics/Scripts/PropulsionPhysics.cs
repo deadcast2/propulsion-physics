@@ -33,27 +33,19 @@ namespace Polycrime
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (PropulsionPadActive())
-            {
-                //////////////////////////////////////////////////////////////////
-                // To prevent the collider from missing the target, get the
-                // closest point the collider hit on the trigger and calculate the
-                // velocity based on that starting point.
-                Vector3 hitPoint = other.ClosestPointOnBounds(transform.position);
-                PropelObject(other.gameObject, CalculateVelocity(hitPoint));
-            }
+            HandleTrigger(other.gameObject, other.bounds);
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
+            HandleTrigger(other.gameObject, other.bounds);
+        }
+
+        private void HandleTrigger(GameObject gameObject, Bounds bounds)
+        {
             if (PropulsionPadActive())
             {
-                //////////////////////////////////////////////////////////////////
-                // To prevent the collider from missing the target, get the
-                // closest point the collider hit on the trigger and calculate the
-                // velocity based on that starting point.
-                //Vector3 hitPoint = other.collider.ClosestPointOnBounds(transform.position);
-                PropelObject(other.gameObject, CalculateVelocity(transform.position));
+                PropelObject(gameObject, CalculateVelocity(bounds.center));
             }
         }
 

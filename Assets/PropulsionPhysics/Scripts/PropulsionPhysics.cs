@@ -44,6 +44,19 @@ namespace Polycrime
             }
         }
 
+        protected virtual void OnTriggerEnter2D(Collider2D other)
+        {
+            if (PropulsionPadActive())
+            {
+                //////////////////////////////////////////////////////////////////
+                // To prevent the collider from missing the target, get the
+                // closest point the collider hit on the trigger and calculate the
+                // velocity based on that starting point.
+                //Vector3 hitPoint = other.collider.ClosestPointOnBounds(transform.position);
+                PropelObject(other.gameObject, CalculateVelocity(transform.position));
+            }
+        }
+
         private void OnDrawGizmos()
         {
             if (showTrajectory && PropulsionPadActive())

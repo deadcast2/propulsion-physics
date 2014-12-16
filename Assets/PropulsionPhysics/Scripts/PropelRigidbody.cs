@@ -10,6 +10,11 @@ namespace Polycrime
             {
                 rigidbody.velocity = velocity;
             }
+
+            if (rigidbody2D)
+            {
+                rigidbody2D.velocity = velocity;
+            }
         }
     }
 }

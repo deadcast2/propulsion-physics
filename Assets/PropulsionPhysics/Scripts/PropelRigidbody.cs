@@ -4,17 +4,20 @@ namespace Polycrime
 {
     public class PropelRigidbody : MonoBehaviour, IPropelBehavior
     {
+        private Rigidbody cachedRigidbody3D;
+        private Rigidbody2D cachedRigidbody2D;
+
         public void React(Vector3 velocity)
         {
-            if (rigidbody)
-            {
-                rigidbody.velocity = velocity;
-            }
+            if (cachedRigidbody3D) cachedRigidbody3D.velocity = velocity;
 
-            if (rigidbody2D)
-            {
-                rigidbody2D.velocity = velocity;
-            }
+            if (cachedRigidbody2D) cachedRigidbody2D.velocity = velocity;
+        }
+
+        private void Awake()
+        {
+            cachedRigidbody3D = rigidbody;
+            cachedRigidbody2D = rigidbody2D;
         }
     }
 }

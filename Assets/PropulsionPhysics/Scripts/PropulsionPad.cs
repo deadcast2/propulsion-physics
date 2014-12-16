@@ -8,7 +8,6 @@ namespace Polycrime
         public float reachTime = 1.5f;
         public Color trajectoryColor = Color.magenta;
         public bool showTrajectory = true;
-        public float verticalOnlyMin = 0.5f;
 
         protected virtual void Start()
         {
@@ -45,7 +44,8 @@ namespace Polycrime
         {
             if (PropulsionPadActive())
             {
-                PropelObject(gameObject, CalculateVelocity(bounds.center));
+                Vector3 veloctiy = TrajectoryMath.CalculateVelocity(bounds.center, target.position, reachTime);
+                PropelObject(gameObject, veloctiy);
             }
         }
 
@@ -62,39 +62,9 @@ namespace Polycrime
             return (enabled && target != null && reachTime > 0);
         }
 
-        ////////////////////////////////////////////////////////////////////////////////
-        // This is the heart of the Propulsion Physics script. If the target is far enough away
-        // the normal trajectory is calculated based on the editor's set gravity. A non-
-        // parabolic trajectory is calculated if the target is almost straight overhead.
-        // The verticalOnlyMin can be adjusted to when the velocity calculation should
-        // switch to vertical populsion only.
-        private Vector3 CalculateVelocity(Vector3 startPoint)
-        {
-            Vector3 direction = (target.position - startPoint);
-            float gravity = Physics.gravity.magnitude;
-            float yVelocity = (direction.y / reachTime) + (0.5f * gravity * reachTime);
-
-            if (TargetTooClose())
-            {
-                return new Vector3(0, yVelocity, 0);
-            }
-            else
-            {
-                return new Vector3(direction.x / reachTime, yVelocity, direction.z / reachTime);
-            }
-        }
-
-        private bool TargetTooClose()
-        {
-            Vector3 targetPosition = target.position;
-            Vector3 leveledTarget = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
-
-            return Vector3.Distance(leveledTarget, transform.position) <= verticalOnlyMin;
-        }
-
         private void DrawTrajectory()
         {
-            Vector3 initialVelocity = CalculateVelocity(transform.position);
+            Vector3 initialVelocity = TrajectoryMath.CalculateVelocity(transform.position, target.position, reachTime);
             float deltaTime = reachTime / initialVelocity.magnitude;
             int drawSteps = (int)(initialVelocity.magnitude - 0.5f);
             Vector3 currentPosition = transform.position;

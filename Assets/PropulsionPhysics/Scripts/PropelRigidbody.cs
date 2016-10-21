@@ -16,8 +16,8 @@ namespace Polycrime
 
         private void Awake()
         {
-            cachedRigidbody3D = rigidbody;
-            cachedRigidbody2D = rigidbody2D;
+            cachedRigidbody3D = GetComponent<Rigidbody>();
+            cachedRigidbody2D = GetComponent<Rigidbody2D>();
         }
     }
 }
